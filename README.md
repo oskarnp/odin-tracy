@@ -1,6 +1,9 @@
 # odin-tracy
 Tracy profiler for the Odin programming language.
 
+![image](https://user-images.githubusercontent.com/6025293/111910080-3411b000-8a60-11eb-9be0-8c80a1d5831c.png)
+
+
 ## 0. Prerequisites
 This assumes you are using the latest nightly build or GitHub master of the Odin compiler.   Since Odin is still under development this means these bindings might break in the future. Please create an issue or PR if that happens.
 
