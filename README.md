@@ -23,12 +23,12 @@ git submodule update --init
 ```sh
 brew install pkg-config glfw freetype capstone
 ```
-#### Build profiler
+#### Build profiler server
 ```
 cd tracy/profiler/build/unix
 make release
 ```
-#### Run profiler
+#### Run profiler server
 ```
 ./tracy/profiler/build/unix/Tracy-release
 ```
@@ -40,13 +40,13 @@ make release
 cd tracy\vcpkg
 install_vcpkg_dependencies.bat
 ```
-#### Build profiler
+#### Build profiler server
 ```sh
 cd tracy\profiler\build\win32
 msbuild Tracy.sln -t:Build -p:Configuration=Release
 ```
 (or open solution with Visual Studio and build from there)
-#### Run profiler
+#### Run profiler server
 ```sh
 x64\Release\Tracy.exe
 ```
@@ -66,10 +66,10 @@ lib tracy.obj
 ### Linux
 TODO
 
-## 4. (Optional) Run the demo application
+## 4. (Optional) Run the demo application / profiler client
 
 ```sh
 cd demo
 odin build . -define:TRACY_ENABLE=true
 ```
-and then click Connect in Tracy server application.
+and then click Connect in Tracy profiler server.
