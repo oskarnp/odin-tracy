@@ -13,9 +13,6 @@ import tracy ".."
 	Dummy example to show using multiple threads with Tracy.
 
 	Build with:   odin build . -define:TRACY_ENABLE=true
-
-	N.B! the strings passed to Zone* procs need to be globally unique as they
-	identify a particular source code location.
 */
 
 main :: proc() {
