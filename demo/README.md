@@ -1,6 +1,6 @@
 # Demo
 
-A dummy demo showcasing how to use these bindings with multiple threads and with tracked heap allocations. Don't forget to define TRACY_ENABLE to true for the tracing to come into effect.
+A simple demo showcasing how to use these bindings with multiple threads and with tracked heap allocations. Don't forget to define TRACY_ENABLE to true for the tracing to come into effect.
 
 ```sh
 odin run . -define:TRACY_ENABLE=true
