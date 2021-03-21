@@ -65,3 +65,11 @@ lib tracy.obj
 ```
 ### Linux
 TODO
+
+## 4. (Optional) Run the demo application
+
+```sh
+cd demo
+odin build . -define:TRACY_ENABLE=true
+```
+and then click Connect in Tracy server application.
