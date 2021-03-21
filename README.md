@@ -70,6 +70,6 @@ TODO
 
 ```sh
 cd demo
-odin build . -define:TRACY_ENABLE=true
+odin run . -define:TRACY_ENABLE=true
 ```
 and then click Connect in Tracy profiler server.
