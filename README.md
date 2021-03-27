@@ -52,7 +52,22 @@ x64\Release\Tracy.exe
 ```
 
 ## Linux
-TODO
+
+### Install dependencies
+* pkg-config
+* glfw3
+* freetype2
+* capstone
+
+#### Build profiler server
+```
+cd tracy/profiler/build/unix
+make release
+```
+#### Run profiler server
+```
+./tracy/profiler/build/unix/Tracy-release
+```
 
 ## 3. Building the Tracy profiler client library
 
