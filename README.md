@@ -35,7 +35,7 @@ make release
 
 ## Windows
 #### Install dependencies
-(This will download and install external dependencies (glfw3, libcapstone, libfreetype) to vcpkg local directory. This writes files only to the vcpkg\vcpkg directory and makes no other changes on your machine.)
+This will download and install external dependencies (glfw3, libcapstone, libfreetype) to vcpkg local directory. This writes files only to the vcpkg\vcpkg directory and makes no other changes on your machine.
 ```sh
 cd tracy\vcpkg
 install_vcpkg_dependencies.bat
