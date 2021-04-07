@@ -1,5 +1,5 @@
 # odin-tracy
-Tracy profiler for the Odin programming language.
+Tracy profiler bindings/wrapper for the Odin programming language.
 
 ![image](https://user-images.githubusercontent.com/6025293/111910080-3411b000-8a60-11eb-9be0-8c80a1d5831c.png)
 
