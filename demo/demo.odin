@@ -36,7 +36,7 @@ main :: proc() {
 		self              = &tracy.TrackedAllocatorData{},
 		callstack_enable  = true,
 		callstack_size    = 5,
-		backing_allocator = context.allocator
+		backing_allocator = context.allocator,
 	);
 
 	for {
