@@ -6,7 +6,7 @@ Tracy profiler bindings/wrapper for the Odin programming language.
 
 ## 0. Prerequisites
 This assumes you are using the latest nightly build or GitHub master of the Odin compiler.   Since Odin is still under development this means these bindings might break in the future. Please create an issue or PR if that happens.
-Last verified against: odin version dev-2021-04:5f617c56
+Last verified against: odin version dev-2021-07:481fc8a5
 
 ## 1. Cloning the sources
 ```sh
