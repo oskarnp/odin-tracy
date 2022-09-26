@@ -3,9 +3,9 @@ package tracy
 import "core:c"
 import "core:os"
 
-when os.OS == "darwin"  do foreign import tracy "tracy.dylib"
-when os.OS == "windows" do foreign import tracy "tracy.lib"
-when os.OS == "linux"   do foreign import tracy "tracy.o"
+when os.OS == .Darwin  do foreign import tracy "tracy.dylib"
+when os.OS == .Windows do foreign import tracy "tracy.lib"
+when os.OS == .Linux   do foreign import tracy "tracy.o"
 
 ___tracy_source_location_data :: struct {
 	name     : cstring,
