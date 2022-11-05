@@ -24,7 +24,6 @@ main :: proc() {
 	NUM_WORKERS :: 3;
 
 	sync.barrier_init(&bar, 1 + NUM_WORKERS);
-	defer sync.barrier_destroy(&bar);
 
 	for i in 1..NUM_WORKERS {
 		context.user_index = i;

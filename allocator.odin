@@ -57,6 +57,8 @@ TrackedAllocator :: proc(
 					// TODO
 				case .Query_Features:
 					// TODO
+				case .Alloc_Non_Zeroed:
+					// TODO
 				}
 			}
 			return new_memory, error;
