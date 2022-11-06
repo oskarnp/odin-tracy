@@ -1,5 +1,11 @@
 package demo
 
+TRACY_ENABLE :: #config(TRACY_ENABLE, false)
+
+when !TRACY_ENABLE {
+	#panic("TRACY_ENABLE need to be set to true for this demo to be useful.")
+}
+
 import "core:fmt"
 import "core:time"
 import "core:thread"
@@ -30,17 +36,17 @@ main :: proc() {
 		thread.run(worker, context);
 	}
 
-	// Track heap allocations with Tracy for this context.
+	// Profile heap allocations with Tracy for this context.
 	context.allocator = tracy.TrackedAllocator(
 		self              = &tracy.TrackedAllocatorData{},
-		callstack_enable  = true,
 		callstack_size    = 5,
 		backing_allocator = context.allocator,
-	);
+		secure            = true
+	)
 
 	for {
-		// Marks the end of the frame. This is optional. Useful for applications
-		// which has a concept of a frame.
+		// Marks the end of the frame. This is optional. Useful for
+		// applications which has a concept of a frame.
 		defer tracy.FrameMark();
 
 		{
@@ -100,3 +106,4 @@ random_sleep :: proc (r : ^rand.Rand) {
 random_alloc :: proc (r : ^rand.Rand) -> rawptr {
 	return mem.alloc(1 + rand.int_max(1024, r));
 }
+
