@@ -97,3 +97,8 @@ DYLB_LIBRARY_PATH=.. odin run . -define:TRACY_ENABLE=true
 ```
 
 and then click Connect in Tracy profiler server.
+
+
+---
+
+For more details on how to use Tracy, please refer to the [official manual](https://github.com/wolfpld/tracy/releases/download/v0.9/tracy.pdf).
