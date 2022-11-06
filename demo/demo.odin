@@ -37,8 +37,8 @@ main :: proc() {
 	}
 
 	// Profile heap allocations with Tracy for this context.
-	context.allocator = tracy.TrackedAllocator(
-		self              = &tracy.TrackedAllocatorData{},
+	context.allocator = tracy.MakeProfiledAllocator(
+		self              = &tracy.ProfiledAllocatorData{},
 		callstack_size    = 5,
 		backing_allocator = context.allocator,
 		secure            = true

@@ -3,15 +3,15 @@ package tracy
 import "core:c"
 import "core:mem"
 
-TrackedAllocatorData :: struct {
+ProfiledAllocatorData :: struct {
 	backing_allocator:  mem.Allocator,
-	tracked_allocator:  mem.Allocator,
+	profiled_allocator: mem.Allocator,
 	callstack_size:     i32,
 	secure:             b32,
 }
 
-TrackedAllocator :: proc(
-	self: ^TrackedAllocatorData,
+MakeProfiledAllocator :: proc(
+	self: ^ProfiledAllocatorData,
 	callstack_size: i32 = TRACY_CALLSTACK,
 	secure: b32 = false,
 	backing_allocator := context.allocator) -> mem.Allocator {
@@ -19,10 +19,10 @@ TrackedAllocator :: proc(
 	self.callstack_size = callstack_size
 	self.secure = secure
 	self.backing_allocator = backing_allocator
-	self.tracked_allocator = mem.Allocator{
+	self.profiled_allocator = mem.Allocator{
 		data = self,
 		procedure = proc(allocator_data: rawptr, mode: mem.Allocator_Mode, size, alignment: int, old_memory: rawptr, old_size: int, location := #caller_location) -> ([]byte, mem.Allocator_Error) {
-			using self := cast(^TrackedAllocatorData) allocator_data
+			using self := cast(^ProfiledAllocatorData) allocator_data
 			new_memory, error := self.backing_allocator.procedure(self.backing_allocator.data, mode, size, alignment, old_memory, old_size, location)
 			if error == .None {
 				switch mode {
@@ -44,7 +44,7 @@ TrackedAllocator :: proc(
 			return new_memory, error
 		},
 	}
-	return self.tracked_allocator
+	return self.profiled_allocator
 }
 
 @(private="file")
