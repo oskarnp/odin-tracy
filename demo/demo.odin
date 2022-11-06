@@ -25,7 +25,7 @@ main :: proc() {
 
 	sync.barrier_init(&bar, 1 + NUM_WORKERS);
 
-	for i in 1..NUM_WORKERS {
+	for i in 1..=NUM_WORKERS {
 		context.user_index = i;
 		thread.run(worker, context);
 	}
