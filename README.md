@@ -77,7 +77,7 @@ c++ -stdlib=libc++ -mmacosx-version-min=10.8 -std=c++11 -DTRACY_ENABLE -O2 -dyna
 ```
 ### Windows
 ```sh
-cl -MT -O2 -DTRACY_ENABLE -c tracy\TracyClient.cpp -Fotracy
+cl -MT -O2 -DTRACY_ENABLE -c tracy\public\TracyClient.cpp -Fotracy
 lib tracy.obj
 ```
 ### Linux
@@ -97,3 +97,8 @@ DYLB_LIBRARY_PATH=.. odin run . -define:TRACY_ENABLE=true
 ```
 
 and then click Connect in Tracy profiler server.
+
+
+---
+
+For more details on how to use Tracy, please refer to the [official manual](https://github.com/wolfpld/tracy/releases/download/v0.9/tracy.pdf).
