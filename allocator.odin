@@ -27,7 +27,7 @@ TrackedAllocator :: proc(
 			new_memory, error := self.backing_allocator.procedure(self.backing_allocator.data, mode, size, alignment, old_memory, old_size, location);
 			if error == .None {
 				switch mode {
-				case .Alloc:
+				case .Alloc, .Alloc_Non_Zeroed:
 					if new_memory != nil {
 						if self.callstack_enable {
 							___tracy_emit_memory_alloc_callstack(raw_data(new_memory), c.size_t(size), self.callstack_size, 1);
@@ -56,8 +56,6 @@ TrackedAllocator :: proc(
 				case .Query_Info:
 					// TODO
 				case .Query_Features:
-					// TODO
-				case .Alloc_Non_Zeroed:
 					// TODO
 				}
 			}
