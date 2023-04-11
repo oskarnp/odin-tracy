@@ -55,17 +55,18 @@ x64\Release\Tracy.exe
 
 ### Install dependencies
 * pkg-config
-* glfw3 (glfw-x11)
 * freetype2
 * capstone
+* glfw3 (glfw-x11)
+  * Note! Only required if using LEGACY=1 below, otherwise not required and
+    profiler server will use Wayland instead.
 
 #### Build profiler server
 ```
 cd tracy/profiler/build/unix
-make release
+make release LEGACY=1
 ```
-> NOTE: For tracy > 0.9 add LEGACY=1 to keep using glfw-x11, otherwise it
-  defaults to using Wayland.
+> Note! Remove LEGACY=1 above to use Wayland instead of GLFW.
 
 #### Run profiler server
 ```
