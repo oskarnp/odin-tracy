@@ -4,7 +4,7 @@ import "core:c"
 
 when ODIN_OS == .Darwin  do foreign import tracy "tracy.dylib"
 when ODIN_OS == .Windows do foreign import tracy "tracy.lib"
-when ODIN_OS == .Linux   do foreign import tracy "tracy.o"
+when ODIN_OS == .Linux   do foreign import tracy "tracy.so"
 
 ___tracy_source_location_data :: struct {
 	name:     cstring,

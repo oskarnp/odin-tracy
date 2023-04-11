@@ -64,7 +64,8 @@ x64\Release\Tracy.exe
 cd tracy/profiler/build/unix
 make release
 ```
-NOTE: For tracy > 0.9 add LEGACY=1 to keep using glfw-x11, otherwise it defaults to using Wayland.
+> NOTE: For tracy > 0.9 add LEGACY=1 to keep using glfw-x11, otherwise it
+  defaults to using Wayland.
 
 #### Run profiler server
 ```
@@ -75,7 +76,7 @@ NOTE: For tracy > 0.9 add LEGACY=1 to keep using glfw-x11, otherwise it defaults
 
 ### Mac OS
 ```sh
-c++ -stdlib=libc++ -mmacosx-version-min=10.8 -std=c++11 -DTRACY_ENABLE -O2 -dynamiclib tracy/TracyClient.cpp  -o tracy.dylib
+c++ -stdlib=libc++ -mmacosx-version-min=10.8 -std=c++11 -DTRACY_ENABLE -O2 -dynamiclib tracy/public/TracyClient.cpp  -o tracy.dylib
 ```
 ### Windows
 ```sh
@@ -83,22 +84,20 @@ cl -MT -O2 -DTRACY_ENABLE -c tracy\public\TracyClient.cpp -Fotracy
 lib tracy.obj
 ```
 ### Linux
-TODO
+```sh
+c++ -std=c++11 -DTRACY_ENABLE -O2 tracy/public/TracyClient.cpp -shared -fPIC -o tracy.so
+```
 
 ## 4. (Optional) Run the demo application / profiler client
 
-### Windows/Linux
 ```sh
-cd demo
-odin run . -define:TRACY_ENABLE=true
-```
-### Mac OS
-```sh
-cd demo
-DYLB_LIBRARY_PATH=.. odin run . -define:TRACY_ENABLE=true
+odin run demo -define:TRACY_ENABLE=true
 ```
 
 and then click Connect in Tracy profiler server.
+
+> Tip! Run the profiled application (e.g. `demo`) in privileged mode
+  (sudo/administrator) to enable even more features in Tracy.
 
 
 ---
