@@ -53,12 +53,12 @@ main :: proc() {
 			// No name given receives the name of the calling procedure
 			tracy.Zone();
 
-			ptr := random_alloc(&r);
+			ptr, _ := random_alloc(&r);
 			random_sleep(&r);
 			free(ptr);
 
 			// Do some deliberate leaking
-			new(int);
+			_, err := new(int);
 	 	}
 
 	 	// Sync all workers to current frame.
@@ -103,7 +103,7 @@ random_sleep :: proc (r : ^rand.Rand) {
 	time.sleep(time.Duration(rand.int_max(25, r)) * time.Millisecond);
 }
 
-random_alloc :: proc (r : ^rand.Rand) -> rawptr {
+random_alloc :: proc (r : ^rand.Rand) -> (rawptr, mem.Allocator_Error) {
 	return mem.alloc(1 + rand.int_max(1024, r));
 }
 
