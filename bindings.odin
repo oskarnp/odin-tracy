@@ -6,6 +6,14 @@ when ODIN_OS == .Darwin  do foreign import tracy "tracy.dylib"
 when ODIN_OS == .Windows do foreign import tracy "tracy.lib"
 when ODIN_OS == .Linux   do foreign import tracy "tracy.so"
 
+TracyPlotFormatEnum :: enum i32
+{
+    TracyPlotFormatNumber,
+    TracyPlotFormatMemory,
+    TracyPlotFormatPercentage,
+    TracyPlotFormatWatt
+}
+
 ___tracy_source_location_data :: struct {
 	name:     cstring,
 	function: cstring,
@@ -130,6 +138,9 @@ foreign tracy {
 	___tracy_emit_frame_image                           :: proc( image: rawptr, w, h: u16, offset: u8, flip: i32 ) ---
 
 	___tracy_emit_plot                                  :: proc( name: cstring, val: f64 ) ---
+	___tracy_emit_plot_float                            :: proc( name: cstring, val: f32 ) ---
+	___tracy_emit_plot_int                              :: proc( name: cstring, val: i64 ) ---
+	___tracy_emit_plot_config                           :: proc( name: cstring, type: TracyPlotFormatEnum, step, fill: b32, color: u32 ) ---
 	___tracy_emit_message_appinfo                       :: proc( txt: cstring, size: c.size_t ) ---
 
 	___tracy_fiber_enter                                :: proc( fiber: cstring ) ---

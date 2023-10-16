@@ -82,10 +82,13 @@ SecureFreeNS  :: SecureFreeN
 @(disabled=!TRACY_ENABLE) FrameImage     :: #force_inline proc(image: rawptr, w, h: u16, offset: u8, flip: i32) { ___tracy_emit_frame_image(image, w, h, offset, flip) }
 
 // Plots and messages
-@(disabled=!TRACY_ENABLE) Plot      :: #force_inline proc(name: cstring, value: f64) { ___tracy_emit_plot(name, value) }
-@(disabled=!TRACY_ENABLE) Message   :: #force_inline proc(txt: string)               { ___tracy_emit_message(_sl(txt), TRACY_CALLSTACK when TRACY_HAS_CALLSTACK else 0) }
-@(disabled=!TRACY_ENABLE) MessageC  :: #force_inline proc(txt: string, color: u32)   { ___tracy_emit_message(_sl(txt), TRACY_CALLSTACK when TRACY_HAS_CALLSTACK else 0) }
-@(disabled=!TRACY_ENABLE) AppInfo   :: #force_inline proc(name: string)              { ___tracy_emit_message_appinfo(_sl(name)) }
+@(disabled=!TRACY_ENABLE) Plot       :: #force_inline proc(name: cstring, value: f64) { ___tracy_emit_plot(name, value) }
+@(disabled=!TRACY_ENABLE) PlotF      :: #force_inline proc(name: cstring, value: f32) { ___tracy_emit_plot_float(name, value) }
+@(disabled=!TRACY_ENABLE) PlotI      :: #force_inline proc(name: cstring, value: i64) { ___tracy_emit_plot_int(name, value) }
+@(disabled=!TRACY_ENABLE) PlotConfig :: #force_inline proc(name: cstring, type:  TracyPlotFormatEnum, step, fill: b32, color: u32) { ___tracy_emit_plot_config(name, type, step, fill, color) }
+@(disabled=!TRACY_ENABLE) Message    :: #force_inline proc(txt: string)               { ___tracy_emit_message(_sl(txt), TRACY_CALLSTACK when TRACY_HAS_CALLSTACK else 0) }
+@(disabled=!TRACY_ENABLE) MessageC   :: #force_inline proc(txt: string, color: u32)   { ___tracy_emit_message(_sl(txt), TRACY_CALLSTACK when TRACY_HAS_CALLSTACK else 0) }
+@(disabled=!TRACY_ENABLE) AppInfo    :: #force_inline proc(name: string)              { ___tracy_emit_message_appinfo(_sl(name)) }
 
 @(disabled=!TRACY_ENABLE) SetThreadName :: #force_inline proc(name: cstring) { ___tracy_set_thread_name(name) }
 
