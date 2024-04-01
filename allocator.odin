@@ -25,7 +25,7 @@ MakeProfiledAllocator :: proc(
 			using self := cast(^ProfiledAllocatorData) allocator_data
 			new_memory, error := self.backing_allocator.procedure(self.backing_allocator.data, mode, size, alignment, old_memory, old_size, location)
 			if error == .None {
-				switch mode {
+				#partial switch mode {
 				case .Alloc, .Alloc_Non_Zeroed:
 					EmitAlloc(new_memory, size, callstack_size, secure)
 				case .Free:
