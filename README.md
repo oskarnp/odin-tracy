@@ -47,6 +47,7 @@ cd tracy\vcpkg
 install_vcpkg_dependencies.bat
 ```
 #### Build profiler server
+This requires Visual Studio installed. Open "x64 Native Tools Command Prompt for VS 20XX" and run commands below.
 ```console
 cd tracy\profiler\build\win32
 msbuild Tracy.sln -t:Build -p:Configuration=Release
