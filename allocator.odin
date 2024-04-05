@@ -32,7 +32,7 @@ MakeProfiledAllocator :: proc(
 					EmitFree(old_memory, callstack_size, secure)
 				case .Free_All:
 					// NOTE: Free_All not supported by this allocator
-				case .Resize:
+				case .Resize, .Resize_Non_Zeroed:
 					EmitFree(old_memory, callstack_size, secure)
 					EmitAlloc(new_memory, size, callstack_size, secure)
 				case .Query_Info:
