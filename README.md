@@ -1,5 +1,7 @@
 # Tracy Profiler bindings for Odin
 
+Odin bindings for [Tracy Profiler](https://github.com/wolfpld/tracy/) v0.14.0
+
 ![image](https://github.com/wolfpld/tracy/raw/master/doc/profiler.png)
 
 ![image](https://github.com/wolfpld/tracy/raw/master/doc/profiler2.png)
@@ -39,10 +41,10 @@ c++ -std=c++11 -DTRACY_ENABLE -O2 tracy/public/TracyClient.cpp -shared -fPIC -o 
 ## 4. (Optional) Run the demo application / profiler client
 
 ```console
-odin run demo -define:TRACY_ENABLE=true
+odin run demo -define:TRACY_ENABLE=true -debug -o:speed
 ```
 
-and then click Connect in Tracy profiler server.
+and then click Connect in Tracy Profiler server.
 
 > [!TIP]
 > Run the profiled application (e.g. `demo`) in privileged mode
@@ -52,7 +54,7 @@ and then click Connect in Tracy profiler server.
 ---
 
 > [!IMPORTANT]
-> For more details on how to use Tracy, please refer to the [official manual](https://github.com/wolfpld/tracy/releases/download/v0.10/tracy.pdf).
+> For more details on how to use Tracy, please refer to the [official manual](https://github.com/wolfpld/tracy/releases/download/v0.14.0/tracy.pdf).
 
 
 ## License
