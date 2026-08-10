@@ -114,3 +114,10 @@ and then click Connect in Tracy profiler server.
 
 > [!IMPORTANT]
 > For more details on how to use Tracy, please refer to the [official manual](https://github.com/wolfpld/tracy/releases/download/v0.10/tracy.pdf).
+
+
+## License
+
+Tracy Profiler is licensed under [3-clause BSD license](https://github.com/wolfpld/tracy/blob/master/LICENSE).
+
+These bindings are licensed under [3-clause BSD license](LICENSE).
