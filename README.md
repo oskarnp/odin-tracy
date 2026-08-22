@@ -14,7 +14,7 @@ git clone --recurse-submodules https://github.com/oskarnp/odin-tracy
 ```
 Or if you already had this repo cloned:
 ```console
-git pull --recursive-submodules
+git pull --recurse-submodules
 ```
 
 ## 2. Download the Tracy Profiler server
