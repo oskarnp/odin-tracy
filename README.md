@@ -1,6 +1,6 @@
 # Tracy Profiler bindings for Odin
 
-Odin bindings for [Tracy Profiler](https://github.com/wolfpld/tracy/) v0.14.0
+Odin bindings for [Tracy Profiler](https://github.com/wolfpld/tracy/) v0.14.1
 
 ![image](https://github.com/wolfpld/tracy/raw/master/doc/profiler.png)
 
@@ -14,28 +14,31 @@ git clone --recurse-submodules https://github.com/oskarnp/odin-tracy
 ```
 Or if you already had this repo cloned:
 ```console
-git submodule update --init
+git pull --recursive-submodules
 ```
 
 ## 2. Download the Tracy Profiler server
 
-[Pre-built binaries](https://github.com/wolfpld/tracy/releases/tag/v0.14.0) for
+[Pre-built binaries](https://github.com/wolfpld/tracy/releases/tag/v0.14.1) for
 Windows/Mac/Linux available from the official release page.
 
 ## 3. Building the Tracy Profiler client library
 
+
 ### Mac OS
+
 ```console
-c++ -stdlib=libc++ -mmacosx-version-min=10.8 -std=c++11 -DTRACY_ENABLE -O2 -dynamiclib tracy/public/TracyClient.cpp  -o tracy.dylib
+./build_macos.sh
 ```
+
 ### Windows
 ```console
-cl -MT -O2 -DTRACY_ENABLE -c tracy\public\TracyClient.cpp -Fotracy
-lib tracy.obj
+.\build_windows.cmd
 ```
+
 ### Linux
 ```console
-c++ -std=c++11 -DTRACY_ENABLE -O2 tracy/public/TracyClient.cpp -shared -fPIC -o tracy.so
+./build_linux.sh
 ```
 
 ## 4. (Optional) Run the demo application / profiler client
@@ -54,7 +57,7 @@ and then click Connect in Tracy Profiler server.
 ---
 
 > [!IMPORTANT]
-> For more details on how to use Tracy, please refer to the [official manual](https://github.com/wolfpld/tracy/releases/download/v0.14.0/tracy.pdf).
+> For more details on how to use Tracy, please refer to the [official manual](https://github.com/wolfpld/tracy/releases/download/v0.14.1/tracy.pdf).
 
 
 ## License
