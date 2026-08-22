@@ -18,7 +18,7 @@ TracyPlotFormatEnum :: enum i32 {
 	Number,
 	Memory,
 	Percentage,
-	Watt
+	Watt,
 }
 
 TracyMessageSeverity :: enum i32 {

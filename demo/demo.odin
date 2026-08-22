@@ -49,7 +49,6 @@ main :: proc() {
 		self              = &tracy.ProfiledAllocatorData{},
 		callstack_size    = 5,
 		backing_allocator = context.allocator,
-		secure            = true
 	)
 
 	for {
@@ -66,7 +65,7 @@ main :: proc() {
 			free(ptr);
 
 			// Do some deliberate leaking
-			_, err := new(int);
+			_, _ = new(int);
 	 	}
 
 	 	// Sync all workers to current frame.
@@ -78,7 +77,7 @@ worker :: proc() {
 	context.random_generator = random_generator_using_user_index_as_seed()
 
 	thread_name := strings.clone_to_cstring(fmt.tprintf("worker%i", context.user_index));
-	defer delete(thread_name);
+	defer delete_cstring(thread_name);
 
 	tracy.SetThreadName(thread_name);
 
