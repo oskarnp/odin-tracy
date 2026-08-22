@@ -1,8 +1,6 @@
-# Tracy Profiler
+# Tracy Profiler bindings for Odin
 
-## A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications.
-
-This is a bindings/wrapper library for the Odin programming language.
+Odin bindings for [Tracy Profiler](https://github.com/wolfpld/tracy/) v0.14.1
 
 ![image](https://github.com/wolfpld/tracy/raw/master/doc/profiler.png)
 
@@ -10,100 +8,46 @@ This is a bindings/wrapper library for the Odin programming language.
 
 ![image](https://github.com/wolfpld/tracy/raw/master/doc/profiler3.png)
 
-## 0. Prerequisites
-This assumes you are using the latest nightly build or GitHub master of the Odin compiler.   Since Odin is still under development this means these bindings might break in the future. Please create an issue or PR if that happens.
-
-## 1. Cloning the sources
+## 1. Cloning/updating the sources
 ```console
 git clone --recurse-submodules https://github.com/oskarnp/odin-tracy
 ```
 Or if you already had this repo cloned:
 ```console
-git submodule update --init
+git pull --recursive-submodules
 ```
 
-## 2. Building the Tracy profiler server
+## 2. Download the Tracy Profiler server
 
-### Mac OS
-#### Install dependencies
-```console
-brew install pkg-config glfw freetype capstone
-```
-#### Build profiler server
-```console
-cd tracy/profiler/build/unix
-make release
-```
-#### Run profiler server
-```console
-./tracy/profiler/build/unix/Tracy-release
-```
+[Pre-built binaries](https://github.com/wolfpld/tracy/releases/tag/v0.14.1) for
+Windows/Mac/Linux available from the official release page.
 
-## Windows
-#### Install dependencies
-This will download and install external dependencies (glfw3, libcapstone, libfreetype) to vcpkg local directory. This writes files only to the vcpkg\vcpkg directory and makes no other changes on your machine.
-```console
-cd tracy\vcpkg
-install_vcpkg_dependencies.bat
-```
-#### Build profiler server
-This requires Visual Studio installed. Open "x64 Native Tools Command Prompt for VS 20XX" and run commands below.
-```console
-cd tracy\profiler\build\win32
-msbuild Tracy.sln -t:Build -p:Configuration=Release
-```
-(or open solution with Visual Studio and build from there)
-#### Run profiler server
-```console
-x64\Release\Tracy.exe
-```
+## 3. Building the Tracy Profiler client library
 
-## Linux
-
-### Install dependencies
-* pkg-config
-* freetype2
-* capstone
-* glfw3 (glfw-x11)
-  * (Only required if using LEGACY=1 below, otherwise not required and
-    profiler server will use Wayland instead.)
-
-#### Build profiler server
-```console
-cd tracy/profiler/build/unix
-make release LEGACY=1
-```
-> [!NOTE]
-> Remove LEGACY=1 above to use Wayland instead of GLFW.
-
-#### Run profiler server
-```console
-./tracy/profiler/build/unix/Tracy-release
-```
-
-## 3. Building the Tracy profiler client library
 
 ### Mac OS
+
 ```console
-c++ -stdlib=libc++ -mmacosx-version-min=10.8 -std=c++11 -DTRACY_ENABLE -O2 -dynamiclib tracy/public/TracyClient.cpp  -o tracy.dylib
+./build_macos.sh
 ```
+
 ### Windows
 ```console
-cl -MT -O2 -DTRACY_ENABLE -c tracy\public\TracyClient.cpp -Fotracy
-lib tracy.obj
+.\build_windows.cmd
 ```
+
 ### Linux
 ```console
-c++ -std=c++11 -DTRACY_ENABLE -O2 tracy/public/TracyClient.cpp -shared -fPIC -o tracy.so
+./build_linux.sh
 ```
 
 ## 4. (Optional) Run the demo application / profiler client
 
 ```console
-odin run demo -define:TRACY_ENABLE=true
+odin run demo -define:TRACY_ENABLE=true -debug -o:speed
 ```
 
-and then click Connect in Tracy profiler server.
+and then click Connect in Tracy Profiler server.
 
 > [!TIP]
 > Run the profiled application (e.g. `demo`) in privileged mode
@@ -113,4 +57,11 @@ and then click Connect in Tracy profiler server.
 ---
 
 > [!IMPORTANT]
-> For more details on how to use Tracy, please refer to the [official manual](https://github.com/wolfpld/tracy/releases/download/v0.10/tracy.pdf).
+> For more details on how to use Tracy, please refer to the [official manual](https://github.com/wolfpld/tracy/releases/download/v0.14.1/tracy.pdf).
+
+
+## License
+
+Tracy Profiler is licensed under [3-clause BSD license](https://github.com/wolfpld/tracy/blob/master/LICENSE).
+
+These bindings are licensed under [3-clause BSD license](LICENSE).
