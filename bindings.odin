@@ -28,7 +28,7 @@ TracyMessageSeverity :: enum i32 {
 	Warning, // Describes potentially dangerous situations caused by unexpected events and states.
 	Error,   // Describes the occurance of unexpected behavior. Does not interrupt the execution of the software.
 	Fatal,   // Describes a critical event that will lead to a software failure/crash.
-};
+}
 
 ___tracy_source_location_data :: struct {
 	name:     cstring,
@@ -172,7 +172,7 @@ foreign tracy {
 	___tracy_terminate_lockable_ctx                     :: proc( lockdata: ^__tracy_lockable_context_data ) ---
 	___tracy_before_lock_lockable_ctx                   :: proc( lockdata: ^__tracy_lockable_context_data ) -> b32 ---
 	___tracy_after_lock_lockable_ctx                    :: proc( lockdata: ^__tracy_lockable_context_data ) ---
-	___tracy_after_unlock_lockable_ctx                  :: proc( lockdata: ^__tracy_lockable_context_data ) ---
+	___tracy_before_unlock_lockable_ctx                 :: proc( lockdata: ^__tracy_lockable_context_data ) ---
 	___tracy_after_try_lock_lockable_ctx                :: proc( lockdata: ^__tracy_lockable_context_data, acquired: b32 ) ---
 	___tracy_mark_lockable_ctx                          :: proc( lockdata: ^__tracy_lockable_context_data, srcloc: ^___tracy_source_location_data ) ---
 	___tracy_custom_name_lockable_ctx                   :: proc( lockdata: ^__tracy_lockable_context_data, name: cstring, nameSz: c.size_t ) ---
@@ -181,11 +181,11 @@ foreign tracy {
 	___tracy_terminate_shared_lockable_ctx              :: proc( lockdata: ^__tracy_shared_lockable_context_data ) ---
 	___tracy_before_lock_shared_lockable_ctx            :: proc( lockdata: ^__tracy_shared_lockable_context_data ) -> b32 ---
 	___tracy_after_lock_shared_lockable_ctx             :: proc( lockdata: ^__tracy_shared_lockable_context_data ) ---
-	___tracy_after_unlock_shared_lockable_ctx           :: proc( lockdata: ^__tracy_shared_lockable_context_data ) ---
+	___tracy_before_unlock_shared_lockable_ctx          :: proc( lockdata: ^__tracy_shared_lockable_context_data ) ---
 	___tracy_after_try_lock_shared_lockable_ctx         :: proc( lockdata: ^__tracy_shared_lockable_context_data, acquired: b32 ) ---
 	___tracy_before_lock_shared_shared_lockable_ctx     :: proc( lockdata: ^__tracy_shared_lockable_context_data ) -> b32 ---
 	___tracy_after_lock_shared_shared_lockable_ctx      :: proc( lockdata: ^__tracy_shared_lockable_context_data ) ---
-	___tracy_after_unlock_shared_shared_lockable_ctx    :: proc( lockdata: ^__tracy_shared_lockable_context_data ) ---
+	___tracy_before_unlock_shared_shared_lockable_ctx   :: proc( lockdata: ^__tracy_shared_lockable_context_data ) ---
 	___tracy_after_try_lock_shared_shared_lockable_ctx  :: proc( lockdata: ^__tracy_shared_lockable_context_data, acquired: b32 ) ---
 	___tracy_mark_shared_lockable_ctx                   :: proc( lockdata: ^__tracy_shared_lockable_context_data, srcloc: ^___tracy_source_location_data ) ---
 	___tracy_custom_name_shared_lockable_ctx            :: proc( lockdata: ^__tracy_shared_lockable_context_data, name: cstring, nameSz: c.size_t ) ---
@@ -196,6 +196,11 @@ foreign tracy {
 	___tracy_end_sampling_profiling                     :: proc() ---
 
 	___tracy_get_time                                   :: proc() -> i64 ---
+
+	// Added in Tracy 0.15.
+	___tracy_section_enter                              :: proc( category: u16, fmt: cstring, #c_vararg args: ..any ) -> u32 ---
+	___tracy_section_leave                              :: proc( id: u32 ) ---
+	___tracy_section_setup                              :: proc( category: u16, fmt: cstring, #c_vararg args: ..any ) ---
 }
 
 when TRACY_FIBERS {
